@@ -1,8 +1,24 @@
-node('built-in') {
-    stage('vcs') {
-    git branch: 'REL_V1', url: 'https://github.com/moezharuni/spring-petclinic.git'
-    }
-    stage('build') {
-        sh 'mvn package'
+pipeline {
+    agent any
+    stages {
+        stage('source code'){
+            steps {
+               git url: 'https://github.com/moezharuni/spring-petclinic.git'
+               branch: 'REL_V1'
+            }
+        }
+        stage('build'){
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('Archive the Artifacts'){
+            steps {
+                Archive 'target/*.jar'
+            }
+        stage('Junit Results'){
+            steps {
+                Junits '**/surefire-reports/*.xml'
+            }    
     }
 }
