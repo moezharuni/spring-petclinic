@@ -1,0 +1,8 @@
+node('built-in') {
+    stage('vcs') {
+    git branch: 'REL_V1', url: 'https://github.com/moezharuni/spring-petclinic.git'
+    }
+    stage('build') {
+        sh 'mvn package'
+    }
+}
