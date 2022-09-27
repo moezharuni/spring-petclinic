@@ -1,24 +1,16 @@
-pipeline {
-    agent any
-    stages {
-        stage('source code'){
+node any
+    stage('source code'){
             steps {
-               git url: 'https://github.com/moezharuni/spring-petclinic.git'
-               branch: 'REL_V1'
+               git url: 'https://github.com/spring-projects/spring-petclinic.git'
+               branch: 'main'
             }
-        }
-        stage('build'){
-            steps {
-                sh 'mvn package'
+        stage('build') {
+            sh 'mvn package'
             }
-        }
         stage('Archive the Artifacts'){
-            steps {
-                archive 'target/*.jar'
+            archive 'target/*.jar'
             }
         stage('Junit Results'){
-            steps {
                 junit '**/surefire-reports/*.xml'
             }    
     }
-}
