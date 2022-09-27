@@ -1,8 +1,8 @@
-node any
+node
     stage('source code'){
             steps {
                git url: 'https://github.com/spring-projects/spring-petclinic.git'
-               branch: 'main'
+               branch: 'REL_V1'
             }
         stage('build') {
             sh 'mvn package'
