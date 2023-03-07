@@ -1,16 +1,11 @@
-node
-    stage('source code'){
+pipeline {
+    agent {label 'SPC_JDK17'}
+    stages {
+        stage ('vcs'){
             steps {
-               git url: 'https://github.com/moezharuni/spring-petclinic.git',
-               branch: 'REL_V1'
+                git url: 'git@github.com:moezharuni/spring-petclinic.git',
+                branch: 'REL_V1'
             }
-        stage('build') {
-            sh 'mvn package'
-            }
-        stage('Archive the Artifacts'){
-            archive 'target/*.jar'
-            }
-        stage('Junit Results'){
-                junit '**/surefire-reports/*.xml'
-            }    
+        }
     }
+}
