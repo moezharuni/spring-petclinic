@@ -3,7 +3,7 @@ pipeline {
     triggers {pollSCM ('* * * * *')}
     parameters { choice(name: 'MAVEN_GOAL', choices: ['package', 'test', 'install', 'compile'], description: 'Maven goals') }
     tools {
-        jdk 'JDK-8'
+        jdk 'JDK-17'
     }
     stages {
         stage ('vcs'){
