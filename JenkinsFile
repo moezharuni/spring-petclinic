@@ -15,7 +15,7 @@ pipeline {
         stage ('sonar'){
             steps {
               withSonarQubeEnv('SONAR_CLOUD') {
-                sh 'mvn clean package sonar:sonar -Dsonarorganization=springpetclinic25'
+                sh 'mvn clean package sonar:sonar -Dsonar.organization=springpetclinic25'
               }
             }
         }
